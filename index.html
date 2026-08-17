@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Push Dashboard · Reporte de Valoración</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/chart.umd.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <h1>Push Dashboard</h1>
+    <p class="subtitle">Valoración de notificaciones push</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="filters" aria-label="Filtros">
+    <div class="filter-group">
+      <label for="f-app">App</label>
+      <select id="f-app"><option value="">Todas</option></select>
+    </div>
+    <div class="filter-group">
+      <label for="f-flow">Flujo</label>
+      <select id="f-flow"><option value="">Todos</option></select>
+    </div>
+    <div class="filter-group">
+      <label for="f-from">Desde</label>
+      <input type="date" id="f-from">
+    </div>
+    <div class="filter-group">
+      <label for="f-to">Hasta</label>
+      <input type="date" id="f-to">
+    </div>
+    <button id="f-reset" class="btn-reset">Limpiar filtros</button>
+  </section>
+
+  <section class="kpis" id="kpis" aria-label="Indicadores">
+    <div class="kpi-card">
+      <span class="kpi-label">Respuestas</span>
+      <span class="kpi-value" id="kpi-total">–</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Score promedio</span>
+      <span class="kpi-value" id="kpi-avg">–</span>
+    </div>
+    <div class="kpi-card kpi-good">
+      <span class="kpi-label">Satisfacción (score 4–5)</span>
+      <span class="kpi-value" id="kpi-good">–</span>
+    </div>
+    <div class="kpi-card kpi-bad">
+      <span class="kpi-label">Insatisfacción (score 1–2)</span>
+      <span class="kpi-value" id="kpi-bad">–</span>
+    </div>
+  </section>
+
+  <section class="charts-grid">
+    <div class="chart-card">
+      <h2>Tendencia mensual</h2>
+      <canvas id="chart-trend"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>Distribución de score</h2>
+      <canvas id="chart-score"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>Por app</h2>
+      <canvas id="chart-app"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>Por flujo</h2>
+      <canvas id="chart-flow"></canvas>
+    </div>
+  </section>
+
+  <section class="comments-section">
+    <div class="comments-header">
+      <h2>Comentarios</h2>
+      <div class="comments-controls">
+        <input type="search" id="c-search" placeholder="Buscar en comentarios…">
+        <label class="checkbox-label">
+          <input type="checkbox" id="c-negative-only">
+          Solo insatisfechos (score ≤ 2)
+        </label>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="comments-table">
+        <thead>
+          <tr>
+            <th data-sort="date">Fecha</th>
+            <th data-sort="app">App</th>
+            <th data-sort="flow">Flujo</th>
+            <th data-sort="score">Score</th>
+            <th data-sort="msg">Comentario</th>
+          </tr>
+        </thead>
+        <tbody id="comments-tbody"></tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <button id="c-prev">‹ Anterior</button>
+      <span id="c-page-info"></span>
+      <button id="c-next">Siguiente ›</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Datos de Reporte de Valoración Push · Generado a partir de <code>Copia de REPORTE_VALORACION_PUSH.xlsx</code></p>
+  </footer>
+
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
